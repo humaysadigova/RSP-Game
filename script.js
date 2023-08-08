@@ -27,6 +27,9 @@ function isWin(isPlayerWin) {
     firstPlayerTitle.innerText = isPlayerWin ? 'WIN' : 'LOSE';
     secondPlayerTitle.innerText = !isPlayerWin ? 'WIN' : 'LOSE';
 
+    firstPlayerTitle.classList.remove('text-success', 'text-danger')
+    secondPlayerTitle.classList.remove('text-success', 'text-danger')
+
     firstPlayerTitle.classList.add(`text-${isPlayerWin ? 'success' : 'danger'}`);
     secondPlayerTitle.classList.add(`text-${!isPlayerWin ? 'success' : 'danger'}`)
 }
@@ -56,8 +59,11 @@ function startGame(e) {
         firstPlayerTitle.innerText = 'DRAW';
         secondPlayerTitle.innerText = 'DRAW';
 
-        firstPlayerTitle.classList.add('text-dark');
-        secondPlayerTitle.classList.add('text-dark');
+        firstPlayerTitle.classList.remove('text-success', 'text-danger');
+        secondPlayerTitle.classList.remove('text-success', 'text-danger');
+
+        firstPlayerTitle.classList.add('text-primary');
+        secondPlayerTitle.classList.add('text-primary');
 
         showHandMv(firstPlayerChoose, secondPlayerChoose);
     } else {
