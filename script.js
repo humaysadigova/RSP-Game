@@ -6,6 +6,13 @@ const secondPlayerTitle = document.querySelector("#secondPlayerTitle");
 const secondPlayerScore = document.querySelector("#secondPlayerScore");
 const secondPlayerImage = document.querySelector("#secondPlayerImage");
 
+const cardText1 = document.querySelector("#cardText1");
+const cardText2 = document.querySelector("#cardText2");
+
+const introContent = document.querySelector("#introContent");
+const mainContent = document.querySelector("#mainContent");
+const startBtn = document.querySelector("#startBtn");
+
 let handSigns = ['p', 'r', 's'];
 let player1Score = 0;
 let player2Score = 0;
@@ -14,6 +21,11 @@ function randomSelector(array) {
     randomNum = Math.floor(Math.random() * array.length);
     return array[randomNum]
 }
+
+startBtn.addEventListener('click', function(){
+    introContent.classList.add('d-none')
+    mainContent.classList.remove('d-none')
+})
 
 function showHandMv(firstPl, secondPl) {
     firstPlayerScore.innerText = `Score: ${player1Score}`;
@@ -31,7 +43,8 @@ function isWin(isPlayerWin) {
     secondPlayerTitle.classList.remove('text-success', 'text-danger')
 
     firstPlayerTitle.classList.add(`text-${isPlayerWin ? 'success' : 'danger'}`);
-    secondPlayerTitle.classList.add(`text-${!isPlayerWin ? 'success' : 'danger'}`)
+    secondPlayerTitle.classList.add(`text-${!isPlayerWin ? 'success' : 'danger'}`);
+
 }
 
 function startGame(e) {
@@ -59,8 +72,8 @@ function startGame(e) {
         firstPlayerTitle.innerText = 'DRAW';
         secondPlayerTitle.innerText = 'DRAW';
 
-        firstPlayerTitle.classList.remove('text-success', 'text-danger');
-        secondPlayerTitle.classList.remove('text-success', 'text-danger');
+        firstPlayerTitle.classList.remove('text-success', 'text-danger',);
+        secondPlayerTitle.classList.remove('text-success', 'text-danger',);
 
         firstPlayerTitle.classList.add('text-primary');
         secondPlayerTitle.classList.add('text-primary');
@@ -71,7 +84,24 @@ function startGame(e) {
         isWin();
         showHandMv(firstPlayerChoose, secondPlayerChoose);
         
-    }
+    };
+
+    if (firstPlayerImage.src.includes('p.png')){
+        cardText1.innerText = 'Paper';
+    } else if (firstPlayerImage.src.includes('r.png')) {
+        cardText1.innerText = 'Rock';
+    } else {
+        cardText1.innerText = 'Scissors';
+    };
+
+    if (secondPlayerImage.src.includes('p.png')){
+        cardText2.innerText = 'Paper';
+    } else if (secondPlayerImage.src.includes('r.png')) {
+        cardText2.innerText = 'Rock';
+    } else {
+        cardText2.innerText = 'Scissors';
+    };
+
 }
 
 window.onkeydown = startGame;
